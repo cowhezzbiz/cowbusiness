@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CowBusiness - Desenvolvimento Web Profissional</title>
+  <meta name="description" content="CowBusiness - Criamos sites profissionais que convertem clientes. Design moderno, performance e resultados.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul-claro: #e8f4f8;
+      --azul-medio: #4a90a4;
+      --azul-escuro: #1a3a4a;
+      --preto: #0a0a0a;
+      --cinza: #6b7280;
+      --cinza-claro: #f3f4f6;
+      --branco: #ffffff;
+      --dourado: #d4a853;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--branco);
+      color: var(--preto);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== Header ===== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      padding: 16px 0;
+    }
+
+    .header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--preto);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--azul-medio);
+    }
+
+    .nav {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav a {
+      color: var(--cinza);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav a:hover {
+      color: var(--azul-medio);
+    }
+
+    .btn-cta {
+      background: var(--azul-medio);
+      color: var(--branco);
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-cta:hover {
+      background: var(--azul-escuro);
+      transform: translateY(-1px);
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, var(--azul-claro) 0%, var(--branco) 100%);
+      padding: 120px 0 80px;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      color: var(--preto);
+    }
+
+    .hero-text h1 span {
+      color: var(--azul-medio);
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      color: var(--cinza);
+      margin-bottom: 32px;
+      max-width: 500px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--azul-medio);
+      color: var(--branco);
+      border: none;
+      padding: 16px 32px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      background: var(--azul-escuro);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--preto);
+      border: 2px solid var(--preto);
+      padding: 16px 32px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-secondary:hover {
+      background: var(--preto);
+      color: var(--branco);
+    }
+
+    .hero-image {
+      position: relative;
+    }
+
+    .hero-image img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      background: var(--branco);
+      padding: 16px 24px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-badge .number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--azul-medio);
+    }
+
+    .hero-badge .label {
+      font-size: 0.85rem;
+      color: var(--cinza);
+    }
+
+    /* ===== Seções ===== */
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--preto);
+    }
+
+    .section-header p {
+      font-size: 1.1rem;
+      color: var(--cinza);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ===== Serviços ===== */
+    .servicos {
+      background: var(--cinza-claro);
+    }
+
+    .servicos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+
+    .servico-card {
+      background: var(--branco);
+      padding: 40px;
+      border-radius: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      transition: all 0.3s;
+    }
+
+    .servico-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .servico-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--azul-claro);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      font-size: 1.5rem;
+    }
+
+    .servico-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--preto);
+    }
+
+    .servico-card p {
+      color: var(--cinza);
+      font-size: 0.95rem;
+    }
+
+    /* ===== Portfólio ===== */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 32px;
+    }
+
+    .portfolio-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--cinza-claro);
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .portfolio-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 60%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .portfolio-item:hover .portfolio-overlay {
+      opacity: 1;
+    }
+
+    .portfolio-overlay h4 {
+      color: var(--branco);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .portfolio-overlay p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9rem;
+    }
+
+    /* ===== Depoimentos ===== */
+    .depoimentos {
+      background: var(--azul-claro);
+    }
+
+    .depoimentos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+
+    .depoimento-card {
+      background: var(--branco);
+      padding: 32px;
+      border-radius: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .depoimento-card .stars {
+      color: var(--dourado);
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+    }
+
+    .depoimento-card p {
+      color: var(--cinza);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .depoimento-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .depoimento-author .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--azul-medio);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--branco);
+      font-weight: 600;
+    }
+
+    .depoimento-author .info h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--preto);
+    }
+
+    .depoimento-author .info p {
+      font-size: 0.85rem;
+      color: var(--cinza);
+    }
+
+    /* ===== Contato ===== */
+    .contato {
+      background: var(--preto);
+      color: var(--branco);
+    }
+
+    .contato .section-header h2 {
+      color: var(--branco);
+    }
+
+    .contato .section-header p {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .contato-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .contato-info h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .contato-info p {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 32px;
+    }
+
+    .contato-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .contato-item .icon {
+      width: 48px;
+      height: 48px;
+      background: var(--azul-medio);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    .contato-item .text h4 {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 4px;
+    }
+
+    .contato-item .text p {
+      font-size: 1rem;
+      color: var(--branco);
+      margin: 0;
+    }
+
+    .contato-form {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      border-radius: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: var(--branco);
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--azul-medio);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--azul-medio);
+      color: var(--branco);
+      border: none;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-submit:hover {
+      background: var(--azul-escuro);
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      background: var(--preto);
+      color: var(--branco);
+      padding: 60px 0 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-section h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--branco);
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+      line-height: 1.8;
+      text-decoration: none;
+      display: block;
+    }
+
+    .footer-section a:hover {
+      color: var(--azul-medio);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 24px;
+      text-align: center;
+    }
+
+    .footer-bottom p {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.85rem;
+    }
+
+    /* ===== Responsivo ===== */
+    @media (max-width: 768px) {
+      .nav {
+        display: none;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-text p {
+        margin: 0 auto 32px;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-image {
+        order: -1;
+      }
+
+      .contato-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+    }
+
+    /* ===== Animações ===== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="#" class="logo">Cow<span>Business</span></a>
+      <nav class="nav">
+        <a href="#inicio">Início</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <a href="#contato" class="btn-cta">Fale Conosco</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="inicio">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Criamos sites que <span>convertem</span> clientes</h1>
+          <p>Desenvolvimento web profissional com design moderno, performance e foco em resultados para o seu negócio.</p>
+          <div class="hero-buttons">
+            <a href="#portfolio" class="btn-primary">Ver Portfólio</a>
+            <a href="#contato" class="btn-secondary">Fale Conosco</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="logo-cowbusiness-whatsapp.svg" alt="CowBusiness" style="max-width: 400px; border-radius: 16px;">
+          <div class="hero-badge">
+            <div class="number">50+</div>
+            <div class="label">Projetos entregues</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Serviços -->
+  <section class="section servicos" id="servicos">
+    <div class="container">
+      <div class="section-header">
+        <h2>Nossos Serviços</h2>
+        <p>Soluções completas em desenvolvimento web para impulsionar seu negócio</p>
+      </div>
+      <div class="servicos-grid">
+        <div class="servico-card">
+          <div class="servico-icon">🌐</div>
+          <h3>Site Institucional</h3>
+          <p>Site profissional para sua empresa com design moderno, responsivo e otimizado para SEO.</p>
+        </div>
+        <div class="servico-card">
+          <div class="servico-icon">🛒</div>
+          <h3>E-commerce</h3>
+          <p>Loja virtual completa com pagamento integrado, gestão de estoque e painel administrativo.</p>
+        </div>
+        <div class="servico-card">
+          <div class="servico-icon">📱</div>
+          <h3>Landing Page</h3>
+          <p>Página de captura de leads com alta conversão para campanhas de marketing digital.</p>
+        </div>
+        <div class="servico-card">
+          <div class="servico-icon">⚙️</div>
+          <h3>Sistema Web</h3>
+          <p>Sistemas personalizados para gestão de agendamentos, clientes, estoque e muito mais.</p>
+        </div>
+        <div class="servico-card">
+          <div class="servico-icon">🎨</div>
+          <h3>UI/UX Design</h3>
+          <p>Design de interfaces intuitivas e experiências de usuário que encantam e convertem.</p>
+        </div>
+        <div class="servico-card">
+          <div class="servico-icon">🚀</div>
+          <h3>Otimização SEO</h3>
+          <p>Otimização para mecanismos de busca para melhorar seu posicionamento no Google.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfólio -->
+  <section class="section" id="portfolio">
+    <div class="container">
+      <div class="section-header">
+        <h2>Nosso Portfólio</h2>
+        <p>Conheça alguns dos projetos que desenvolvemos para nossos clientes</p>
+      </div>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Barbearia Morais">
+          <div class="portfolio-overlay">
+            <h4>Barbearia Morais</h4>
+            <p>Site com agendamento online e sistema de gestão</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&q=80" alt="Barbearia Moderna">
+          <div class="portfolio-overlay">
+            <h4>Barbearia Moderna</h4>
+            <p>Design premium com foco em conversão</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80" alt="Salão de Beleza">
+          <div class="portfolio-overlay">
+            <h4>Salão de Beleza</h4>
+            <p>Site elegante com sistema de agendamento</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Loja Virtual">
+          <div class="portfolio-overlay">
+            <h4>Loja Virtual</h4>
+            <p>E-commerce completo com pagamento integrado</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=80" alt="Sistema de Gestão">
+          <div class="portfolio-overlay">
+            <h4>Sistema de Gestão</h4>
+            <p>Painel administrativo para gestão de clientes</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&q=80" alt="Landing Page">
+          <div class="portfolio-overlay">
+            <h4>Landing Page</h4>
+            <p>Página de captura com alta taxa de conversão</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Depoimentos -->
+  <section class="section depoimentos" id="depoimentos">
+    <div class="container">
+      <div class="section-header">
+        <h2>O que dizem nossos clientes</h2>
+        <p>Depoimentos de quem já transformou seu negócio com nossos serviços</p>
+      </div>
+      <div class="depoimentos-grid">
+        <div class="depoimento-card">
+          <div class="stars">★★★★★</div>
+          <p>"O site superou todas as expectativas! Profissional, moderno e muito fácil de usar. Recomendo demais!"</p>
+          <div class="depoimento-author">
+            <div class="avatar">R</div>
+            <div class="info">
+              <h4>Renan Morais</h4>
+              <p>Barbearia Morais</p>
+            </div>
+          </div>
+        </div>
+        <div class="depoimento-card">
+          <div class="stars">★★★★★</div>
+          <p>"O sistema de agendamento online mudou completamente meu negócio. Agora meus clientes agendam sozinhos!"</p>
+          <div class="depoimento-author">
+            <div class="avatar">C</div>
+            <div class="info">
+              <h4>Carlos Silva</h4>
+              <p>Barbearia do Carlos</p>
+            </div>
+          </div>
+        </div>
+        <div class="depoimento-card">
+          <div class="stars">★★★★★</div>
+          <p>"Atendimento excelente e resultado incrível. O site ficou exatamente como eu queria. Muito satisfeito!"</p>
+          <div class="depoimento-author">
+            <div class="avatar">A</div>
+            <div class="info">
+              <h4>André Santos</h4>
+              <p>Salão André</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section class="section contato" id="contato">
+    <div class="container">
+      <div class="section-header">
+        <h2>Vamos conversar?</h2>
+        <p>Entre em contato e descubra como podemos ajudar seu negócio a crescer</p>
+      </div>
+      <div class="contato-grid">
+        <div class="contato-info">
+          <h3>Informações de Contato</h3>
+          <p>Estamos prontos para atender você e seu negócio</p>
+          <div class="contato-item">
+            <div class="icon">📧</div>
+            <div class="text">
+              <h4>Email</h4>
+              <p>contato@cowbusiness.vercel.app</p>
+            </div>
+          </div>
+          <div class="contato-item">
+            <div class="icon">📱</div>
+            <div class="text">
+              <h4>WhatsApp</h4>
+              <p>(11) 99999-9999</p>
+            </div>
+          </div>
+          <div class="contato-item">
+            <div class="icon">📍</div>
+            <div class="text">
+              <h4>Endereço</h4>
+              <p>São Paulo, SP - Brasil</p>
+            </div>
+          </div>
+        </div>
+        <form class="contato-form" onsubmit="alert('Mensagem enviada com sucesso! Entraremos em contato em breve.'); return false;">
+          <div class="form-group">
+            <label>Nome</label>
+            <input type="text" placeholder="Seu nome" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="seu@email.com" required>
+          </div>
+          <div class="form-group">
+            <label>Telefone</label>
+            <input type="tel" placeholder="(11) 99999-9999">
+          </div>
+          <div class="form-group">
+            <label>Mensagem</label>
+            <textarea placeholder="Como podemos ajudar?"></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Enviar Mensagem</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>CowBusiness</h4>
+          <p>Desenvolvimento web profissional com foco em resultados e experiência do usuário.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Serviços</h4>
+          <a href="#">Site Institucional</a>
+          <a href="#">E-commerce</a>
+          <a href="#">Landing Page</a>
+          <a href="#">Sistema Web</a>
+        </div>
+        <div class="footer-section">
+          <h4>Links Úteis</h4>
+          <a href="#">Portfólio</a>
+          <a href="#">Blog</a>
+          <a href="#">Sobre Nós</a>
+          <a href="#">Contato</a>
+        </div>
+        <div class="footer-section">
+          <h4>Redes Sociais</h4>
+          <a href="#">Instagram</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Facebook</a>
+          <a href="#">WhatsApp</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 CowBusiness. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Animações de scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.servico-card, .portfolio-item, .depoimento-card').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Menu mobile (simplificado)
+    const nav = document.querySelector('.nav');
+    const btnCta = document.querySelector('.btn-cta');
+
+    // Smooth scroll para links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
