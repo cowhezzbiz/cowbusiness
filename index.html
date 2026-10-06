@@ -1,919 +1,250 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CowBusiness - Desenvolvimento Web Profissional</title>
-  <meta name="description" content="CowBusiness - Criamos sites profissionais que convertem clientes. Design moderno, performance e resultados.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --azul-claro: #e8f4f8;
-      --azul-medio: #4a90a4;
-      --azul-escuro: #1a3a4a;
-      --preto: #0a0a0a;
-      --cinza: #6b7280;
-      --cinza-claro: #f3f4f6;
-      --branco: #ffffff;
-      --dourado: #d4a853;
-      --fundo: #f5f5f5;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--fundo);
-      color: var(--preto);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* ===== Header ===== */
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-      padding: 16px 0;
-    }
-
-    .header .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--preto);
-      text-decoration: none;
-    }
-
-    .logo span {
-      color: var(--azul-medio);
-    }
-
-    .nav {
-      display: flex;
-      gap: 32px;
-      align-items: center;
-    }
-
-    .nav a {
-      color: var(--cinza);
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .nav a:hover {
-      color: var(--azul-medio);
-    }
-
-    .btn-cta {
-      background: var(--azul-medio);
-      color: var(--branco);
-      border: none;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
-    }
-
-    .btn-cta:hover {
-      background: var(--azul-escuro);
-      transform: translateY(-1px);
-    }
-
-    /* ===== Hero ===== */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      background: linear-gradient(135deg, var(--azul-claro) 0%, var(--branco) 100%);
-      padding: 120px 0 80px;
-    }
-
-    .hero-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .hero-text h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 24px;
-      color: var(--preto);
-    }
-
-    .hero-text h1 span {
-      color: var(--azul-medio);
-    }
-
-    .hero-text p {
-      font-size: 1.2rem;
-      color: var(--cinza);
-      margin-bottom: 32px;
-      max-width: 500px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      background: var(--azul-medio);
-      color: var(--branco);
-      border: none;
-      padding: 16px 32px;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
-    }
-
-    .btn-primary:hover {
-      background: var(--azul-escuro);
-      transform: translateY(-2px);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--preto);
-      border: 2px solid var(--preto);
-      padding: 16px 32px;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
-    }
-
-    .btn-secondary:hover {
-      background: var(--preto);
-      color: var(--branco);
-    }
-
-    .hero-image {
-      position: relative;
-    }
-
-    .hero-image img {
-      width: 100%;
-      border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-    }
-
-    .hero-badge {
-      position: absolute;
-      bottom: -20px;
-      left: -20px;
-      background: var(--branco);
-      padding: 16px 24px;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
-
-    .hero-badge .number {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--azul-medio);
-    }
-
-    .hero-badge .label {
-      font-size: 0.85rem;
-      color: var(--cinza);
-    }
-
-    /* ===== Seções ===== */
-    .section {
-      padding: 100px 0;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .section-header h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--preto);
-    }
-
-    .section-header p {
-      font-size: 1.1rem;
-      color: var(--cinza);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* ===== Serviços ===== */
-    .servicos {
-      background: var(--cinza-claro);
-    }
-
-    .servicos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 32px;
-    }
-
-    .servico-card {
-      background: var(--branco);
-      padding: 40px;
-      border-radius: 16px;
-      border: 1px solid rgba(0, 0, 0, 0.06);
-      transition: all 0.3s;
-    }
-
-    .servico-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-    }
-
-    .servico-icon {
-      width: 60px;
-      height: 60px;
-      background: var(--azul-claro);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 24px;
-      font-size: 1.5rem;
-    }
-
-    .servico-card h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: var(--preto);
-    }
-
-    .servico-card p {
-      color: var(--cinza);
-      font-size: 0.95rem;
-    }
-
-    /* ===== Portfólio ===== */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 32px;
-    }
-
-    .portfolio-item {
-      position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-      aspect-ratio: 4/3;
-      background: var(--cinza-claro);
-    }
-
-    .portfolio-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s;
-    }
-
-    .portfolio-item:hover img {
-      transform: scale(1.05);
-    }
-
-    .portfolio-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 60%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 24px;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .portfolio-item:hover .portfolio-overlay {
-      opacity: 1;
-    }
-
-    .portfolio-overlay h4 {
-      color: var(--branco);
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .portfolio-overlay p {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 0.9rem;
-    }
-
-    /* ===== Depoimentos ===== */
-    .depoimentos {
-      background: var(--azul-claro);
-    }
-
-    .depoimentos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 32px;
-    }
-
-    .depoimento-card {
-      background: var(--branco);
-      padding: 32px;
-      border-radius: 16px;
-      border: 1px solid rgba(0, 0, 0, 0.06);
-    }
-
-    .depoimento-card .stars {
-      color: var(--dourado);
-      font-size: 1.2rem;
-      margin-bottom: 16px;
-    }
-
-    .depoimento-card p {
-      color: var(--cinza);
-      font-size: 0.95rem;
-      margin-bottom: 24px;
-      font-style: italic;
-    }
-
-    .depoimento-author {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .depoimento-author .avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--azul-medio);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--branco);
-      font-weight: 600;
-    }
-
-    .depoimento-author .info h4 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--preto);
-    }
-
-    .depoimento-author .info p {
-      font-size: 0.85rem;
-      color: var(--cinza);
-    }
-
-    /* ===== Contato ===== */
-    .contato {
-      background: var(--preto);
-      color: var(--branco);
-    }
-
-    .contato .section-header h2 {
-      color: var(--branco);
-    }
-
-    .contato .section-header p {
-      color: rgba(255, 255, 255, 0.6);
-    }
-
-    .contato-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .contato-info h3 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-
-    .contato-info p {
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 32px;
-    }
-
-    .contato-item {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    .contato-item .icon {
-      width: 48px;
-      height: 48px;
-      background: var(--azul-medio);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-    }
-
-    .contato-item .text h4 {
-      font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.5);
-      margin-bottom: 4px;
-    }
-
-    .contato-item .text p {
-      font-size: 1rem;
-      color: var(--branco);
-      margin: 0;
-    }
-
-    .contato-form {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 40px;
-      border-radius: 16px;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 8px;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 12px 16px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      color: var(--branco);
-      font-size: 1rem;
-      font-family: inherit;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--azul-medio);
-    }
-
-    .form-group textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
-
-    .btn-submit {
-      width: 100%;
-      background: var(--azul-medio);
-      color: var(--branco);
-      border: none;
-      padding: 16px;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .btn-submit:hover {
-      background: var(--azul-escuro);
-    }
-
-    /* ===== Footer ===== */
-    .footer {
-      background: var(--preto);
-      color: var(--branco);
-      padding: 60px 0 30px;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .footer-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-
-    .footer-section h4 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 16px;
-      color: var(--branco);
-    }
-
-    .footer-section p,
-    .footer-section a {
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 0.9rem;
-      line-height: 1.8;
-      text-decoration: none;
-      display: block;
-    }
-
-    .footer-section a:hover {
-      color: var(--azul-medio);
-    }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding-top: 24px;
-      text-align: center;
-    }
-
-    .footer-bottom p {
-      color: rgba(255, 255, 255, 0.4);
-      font-size: 0.85rem;
-    }
-
-    /* ===== Responsivo ===== */
-    @media (max-width: 768px) {
-      .nav {
-        display: none;
-      }
-
-      .hero-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .hero-text p {
-        margin: 0 auto 32px;
-      }
-
-      .hero-buttons {
-        justify-content: center;
-      }
-
-      .hero-image {
-        order: -1;
-      }
-
-      .contato-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .section {
-        padding: 60px 0;
-      }
-    }
-
-    /* ===== Animações ===== */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .animate {
-      animation: fadeInUp 0.6s ease-out forwards;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CowBusiness | Desenvolvimento Web em Novo Hamburgo</title>
+<meta name="description" content="Criamos sites profissionais para barbearias, saloes e pequenos negocios em Novo Hamburgo e regiao. Design sob medida, entrega rapida e o site e seu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d1117;--panel:#141b24;--panel2:#1a2331;--ink:#e8eef5;--dim:#8291a5;--line:rgba(255,255,255,.09);--gold:#d4a853;--gold-l:#e5c65c}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.68;overflow-x:hidden}
+.wrap{max-width:1260px;margin:0 auto;padding:0 28px}
+svg{display:block}
+h1,h2,h3,.dsp{font-family:'Archivo Black',sans-serif;text-transform:uppercase;letter-spacing:-.5px;font-weight:400}
+.masthead{position:sticky;top:0;z-index:70;background:rgba(13,17,23,.94);backdrop-filter:blur(16px);border-bottom:2px solid var(--gold)}
+.masthead .wrap{display:flex;justify-content:space-between;align-items:center;height:80px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand .mk{width:40px;height:40px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:'Archivo Black';font-size:1.15rem}
+.brand .nm{font-family:'Archivo Black';font-size:1.5rem;letter-spacing:-.5px;color:var(--ink)}
+.brand .nm span{color:var(--gold)}
+.mh-nav{display:flex;gap:26px;align-items:center}
+.mh-nav a{color:var(--dim);text-decoration:none;font-size:.88rem;font-weight:500;transition:.2s}
+.mh-nav a:hover{color:var(--gold)}
+.mh-nav a.book{background:var(--gold);color:#0d1117;padding:12px 22px;font-size:.7rem;text-transform:uppercase;letter-spacing:1.2px;font-weight:700;font-family:'Archivo Black'}
+.mh-nav a.book:hover{background:var(--gold-l)}
+.ticker{background:var(--gold);color:#0d1117;padding:13px 0;overflow:hidden;white-space:nowrap}
+.ticker span{display:inline-block;font-family:'Archivo Black';text-transform:uppercase;font-size:.95rem;letter-spacing:.5px;animation:tk 30s linear infinite}
+.ticker b{margin:0 26px}
+@keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.hero{border-bottom:1px solid var(--line)}
+.hero-band{height:min(54vh,450px);position:relative;overflow:hidden}
+.hero-band img{width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:brightness(.5) contrast(1.1)}
+.hero-band::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,17,23,.3),rgba(13,17,23,.95))}
+.hero-body{padding:62px 0 66px}
+.hero-body .wrap{display:grid;grid-template-columns:1.7fr 1fr;gap:60px}
+.kicker{font-size:.68rem;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:22px}
+.hero h1{font-size:clamp(2.4rem,6.5vw,5.2rem);line-height:.96;letter-spacing:-2px;margin-bottom:26px}
+.hero h1 em{font-style:normal;color:transparent;-webkit-text-stroke:2px var(--gold)}
+.deck{color:var(--dim);font-size:1.1rem;max-width:580px;line-height:1.72}
+.hero-side{border-left:1px solid var(--line);padding-left:36px;display:flex;flex-direction:column;justify-content:space-between}
+.sstat{margin-bottom:30px}
+.sstat .n{font-family:'Archivo Black';font-size:2.9rem;line-height:1;color:var(--gold)}
+.sstat .l{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-top:8px}
+.side-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--gold);color:#0d1117;padding:18px;text-decoration:none;font-family:'Archivo Black';text-transform:uppercase;font-size:.78rem;letter-spacing:1px;transition:.2s}
+.side-btn:hover{background:var(--gold-l);transform:translateY(-2px)}
+.sec{padding:88px 0}
+.sec-head{margin-bottom:50px;display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.sec-head .k{font-size:.68rem;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);font-weight:700;display:block;margin-bottom:12px}
+.sec-head h2{font-size:clamp(2rem,5vw,3.5rem);line-height:.96}
+.sec-head .note{color:var(--dim);font-size:.93rem;max-width:360px}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.svc{padding:38px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:.22s;background:var(--bg)}
+.svc:hover{background:var(--panel2)}
+.svc .ic{width:48px;height:48px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);margin-bottom:22px}
+.svc .n{font-family:'Archivo Black';font-size:.74rem;color:var(--gold);margin-bottom:14px;display:block;letter-spacing:1.5px}
+.svc h3{font-size:1.25rem;margin-bottom:9px}
+.svc .d{color:var(--dim);font-size:.88rem;margin-bottom:20px;min-height:44px}
+.svc .p{font-family:'Archivo Black';font-size:1.4rem;color:var(--gold)}
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.proc{padding:34px 26px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:.22s}
+.proc:hover{background:var(--panel)}
+.proc .n{font-family:'Archivo Black';font-size:2.2rem;color:var(--line);line-height:1;margin-bottom:18px}
+.proc:hover .n{color:var(--gold)}
+.proc h3{font-size:1.05rem;margin-bottom:9px}
+.proc p{color:var(--dim);font-size:.86rem}
+.pf-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.pf{border-right:1px solid var(--line);border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink);display:block;transition:.25s;background:var(--bg)}
+.pf:hover{background:var(--panel2)}
+.pf .thumb{height:210px;overflow:hidden;position:relative}
+.pf .thumb img{width:100%;height:100%;object-fit:cover;transition:.5s;filter:brightness(.82)}
+.pf:hover .thumb img{transform:scale(1.06);filter:brightness(1)}
+.pf .body{padding:28px}
+.pf .tag{font-family:'Archivo Black';font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:12px}
+.pf h3{font-size:1.15rem;margin-bottom:8px}
+.pf p{color:var(--dim);font-size:.86rem}
+.about{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:88px 28px}
+.about h2{font-size:clamp(1.9rem,4.5vw,3rem);margin-bottom:24px;line-height:1}
+.about p{color:var(--dim);margin-bottom:18px;font-size:1.03rem}
+.about .box{border:1px solid var(--line);padding:28px;margin-top:28px}
+.about .box h4{font-family:'Archivo Black';font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.about .box ul{list-style:none}
+.about .box li{color:var(--dim);font-size:.92rem;padding:9px 0;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:flex-start}
+.about .box li:last-child{border-bottom:none}
+.about .box li svg{flex-shrink:0;margin-top:4px;color:var(--gold)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.rev{padding:34px 28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.rev .stars{color:var(--gold);letter-spacing:4px;margin-bottom:16px;font-size:.9rem}
+.rev p{color:#b4bcc8;font-size:.95rem;margin-bottom:22px}
+.rev .who{font-family:'Archivo Black';font-size:.76rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--gold)}
+.rev .role{color:var(--dim);font-size:.78rem;margin-top:3px}
+.contact{background:var(--panel);border-top:1px solid var(--line)}
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;padding:88px 28px}
+.contact h2{font-size:clamp(1.9rem,4.5vw,3rem);margin-bottom:22px;line-height:1}
+.contact .lead{color:var(--dim);margin-bottom:34px;font-size:1.03rem}
+.li{display:flex;gap:18px;margin-bottom:26px;align-items:flex-start}
+.li .ic{width:46px;height:46px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0}
+.li h4{font-family:'Archivo Black';font-size:.66rem;text-transform:uppercase;letter-spacing:2px;color:var(--dim);margin-bottom:5px}
+.li p{font-size:1rem}
+.li a{color:var(--gold);text-decoration:none}
+.li a:hover{text-decoration:underline}
+.wa-big{display:flex;align-items:center;justify-content:center;gap:12px;background:var(--gold);color:#0d1117;padding:20px;text-decoration:none;font-family:'Archivo Black';text-transform:uppercase;font-size:.82rem;letter-spacing:1px;transition:.22s;margin-top:10px}
+.wa-big:hover{background:var(--gold-l);transform:translateY(-2px)}
+.hrow{display:flex;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--line);font-size:.94rem}
+.hrow .day{color:var(--dim);text-transform:uppercase;font-size:.72rem;letter-spacing:2px;font-family:'Archivo Black'}
+.hrow .cl{color:var(--gold)}
+footer{border-top:2px solid var(--gold);padding:38px 0}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.foot .l{font-family:'Archivo Black';font-size:1.15rem;color:var(--ink)}
+.foot .l span{color:var(--gold)}
+.foot .r{color:var(--dim);font-size:.78rem;letter-spacing:1px;text-transform:uppercase}
+@media(max-width:980px){
+.hero-body .wrap,.about .wrap,.contact .wrap{grid-template-columns:1fr}
+.hero-side{border-left:none;padding-left:0;border-top:1px solid var(--line);padding-top:34px}
+.svc-grid,.rev-grid,.pf-grid{grid-template-columns:1fr 1fr}
+.proc-grid{grid-template-columns:1fr 1fr}
+.mh-nav a:not(.book){display:none}
+.sec,.about .wrap,.contact .wrap{padding:56px 28px}
+}
+@media(max-width:600px){.svc-grid,.rev-grid,.pf-grid,.proc-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="header">
-    <div class="container">
-      <a href="#" class="logo">Cow<span>Business</span></a>
-      <nav class="nav">
-        <a href="#inicio">Início</a>
-        <a href="#servicos">Serviços</a>
-        <a href="#portfolio">Portfólio</a>
-        <a href="#contato">Contato</a>
-      </nav>
-      <a href="#contato" class="btn-cta">Fale Conosco</a>
-    </div>
-  </header>
+<div class="masthead"><div class="wrap">
+<a href="#" class="brand"><span class="mk">C</span><span class="nm">COW<span>BUSINESS</span></span></a>
+<div class="mh-nav"><a href="#servicos">Servi&ccedil;os</a><a href="#portfolio">Portf&oacute;lio</a><a href="#processo">Como funciona</a><a href="#contato">Contato</a><a href="https://wa.me/5551999999999" class="book">Falar agora</a></div>
+</div></div>
 
-  <!-- Hero -->
-  <section class="hero" id="inicio">
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-text">
-          <h1>Criamos sites que <span>convertem</span> clientes</h1>
-          <p>Desenvolvimento web profissional com design moderno, performance e foco em resultados para o seu negócio.</p>
-          <div class="hero-buttons">
-            <a href="#portfolio" class="btn-primary">Ver Portfólio</a>
-            <a href="#contato" class="btn-secondary">Fale Conosco</a>
-          </div>
-        </div>
-        <div class="hero-image">
-          <img src="logo-cowbusiness-whatsapp.svg" alt="CowBusiness" style="max-width: 400px; border-radius: 16px;">
-          <div class="hero-badge">
-            <div class="number">50+</div>
-            <div class="label">Projetos entregues</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<div class="ticker"><span>SITES PROFISSIONAIS <b>&#9670;</b> DESIGN SOB MEDIDA <b>&#9670;</b> VOC&Ecirc; &Eacute; DONO DO SITE <b>&#9670;</b> NOVO HAMBURGO E REGI&Atilde;O <b>&#9670;</b> SITES PROFISSIONAIS <b>&#9670;</b> DESIGN SOB MEDIDA <b>&#9670;</b> VOC&Ecirc; &Eacute; DONO DO SITE <b>&#9670;</b> NOVO HAMBURGO E REGI&Atilde;O <b>&#9670;</b></span></div>
 
-  <!-- Serviços -->
-  <section class="section servicos" id="servicos">
-    <div class="container">
-      <div class="section-header">
-        <h2>Nossos Serviços</h2>
-        <p>Soluções completas em desenvolvimento web para impulsionar seu negócio</p>
-      </div>
-      <div class="servicos-grid">
-        <div class="servico-card">
-          <div class="servico-icon">🌐</div>
-          <h3>Site Institucional</h3>
-          <p>Site profissional para sua empresa com design moderno, responsivo e otimizado para SEO.</p>
-        </div>
-        <div class="servico-card">
-          <div class="servico-icon">🛒</div>
-          <h3>E-commerce</h3>
-          <p>Loja virtual completa com pagamento integrado, gestão de estoque e painel administrativo.</p>
-        </div>
-        <div class="servico-card">
-          <div class="servico-icon">📱</div>
-          <h3>Landing Page</h3>
-          <p>Página de captura de leads com alta conversão para campanhas de marketing digital.</p>
-        </div>
-        <div class="servico-card">
-          <div class="servico-icon">⚙️</div>
-          <h3>Sistema Web</h3>
-          <p>Sistemas personalizados para gestão de agendamentos, clientes, estoque e muito mais.</p>
-        </div>
-        <div class="servico-card">
-          <div class="servico-icon">🎨</div>
-          <h3>UI/UX Design</h3>
-          <p>Design de interfaces intuitivas e experiências de usuário que encantam e convertem.</p>
-        </div>
-        <div class="servico-card">
-          <div class="servico-icon">🚀</div>
-          <h3>Otimização SEO</h3>
-          <p>Otimização para mecanismos de busca para melhorar seu posicionamento no Google.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="hero">
+<div class="hero-band"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1600&q=80" alt="Trabalho de desenvolvimento web"></div>
+<div class="hero-body"><div class="wrap">
+<div>
+<div class="kicker">Novo Hamburgo &middot; Rio Grande do Sul</div>
+<h1>Sites que<br><em>trazem cliente</em></h1>
+<p class="deck">A gente cria o site do teu neg&oacute;cio com design sob medida, entrega r&aacute;pida e pre&ccedil;o que cabe no bolso. E o melhor: o site &eacute; teu, sem taxa de plataforma e sem mensalidade obrigat&oacute;ria.</p>
+</div>
+<div class="hero-side">
+<div>
+<div class="sstat"><div class="n">06</div><div class="l">Sites entregues</div></div>
+<div class="sstat"><div class="n">100%</div><div class="l">Design exclusivo</div></div>
+<div class="sstat"><div class="n">07</div><div class="l">Dias pra ficar no ar</div></div>
+</div>
+<a href="https://wa.me/5551999999999" class="side-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg> Falar no WhatsApp</a>
+</div>
+</div></div>
+</section>
 
-  <!-- Portfólio -->
-  <section class="section" id="portfolio">
-    <div class="container">
-      <div class="section-header">
-        <h2>Nosso Portfólio</h2>
-        <p>Conheça alguns dos projetos que desenvolvemos para nossos clientes</p>
-      </div>
-      <div class="portfolio-grid">
-        <div class="portfolio-item">
-          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&q=80" alt="Barbearia Moderna">
-          <div class="portfolio-overlay">
-            <h4>Barbearia Moderna</h4>
-            <p>Design premium com foco em conversão</p>
-          </div>
-        </div>
-        <div class="portfolio-item">
-          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80" alt="Salão de Beleza">
-          <div class="portfolio-overlay">
-            <h4>Salão de Beleza</h4>
-            <p>Site elegante com sistema de agendamento</p>
-          </div>
-        </div>
-        <div class="portfolio-item">
-          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Loja Virtual">
-          <div class="portfolio-overlay">
-            <h4>Loja Virtual</h4>
-            <p>E-commerce completo com pagamento integrado</p>
-          </div>
-        </div>
-        <div class="portfolio-item">
-          <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=80" alt="Sistema de Gestão">
-          <div class="portfolio-overlay">
-            <h4>Sistema de Gestão</h4>
-            <p>Painel administrativo para gestão de clientes</p>
-          </div>
-        </div>
-        <div class="portfolio-item">
-          <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&q=80" alt="Landing Page">
-          <div class="portfolio-overlay">
-            <h4>Landing Page</h4>
-            <p>Página de captura com alta taxa de conversão</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="sec" id="servicos"><div class="wrap">
+<div class="sec-head"><div><span class="k">Servi&ccedil;os</span><h2>O que a gente faz</h2></div>
+<p class="note">Do site simples de uma p&aacute;gina at&eacute; loja virtual completa.</p></div>
+<div class="svc-grid">
+<div class="svc"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><span class="n">01</span><h3>Site Institucional</h3><p class="d">Site profissional com teus servi&ccedil;os, contato e endere&ccedil;o. Responsivo e otimizado pro Google.</p><div class="p">a partir de R$ 700</div></div>
+<div class="svc"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg></div><span class="n">02</span><h3>E-commerce</h3><p class="d">Loja virtual com pagamento integrado, carrinho e painel pra gerenciar produtos e pedidos.</p><div class="p">a partir de R$ 1.500</div></div>
+<div class="svc"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></div><span class="n">03</span><h3>Landing Page</h3><p class="d">P&aacute;gina de captura pra campanha, com formul&aacute;rio e bot&atilde;o direto pro WhatsApp.</p><div class="p">a partir de R$ 400</div></div>
+<div class="svc"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><span class="n">04</span><h3>Agendamento Online</h3><p class="d">Sistema pra cliente marcar hor&aacute;rio sozinho, com painel de controle pra ti.</p><div class="p">a partir de R$ 1.200</div></div>
+<div class="svc"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div><span class="n">05</span><h3>Otimiza&ccedil;&atilde;o SEO</h3><p class="d">Ajustes pra teu site aparecer melhor quando algu&eacute;m procurar pelo teu servi&ccedil;o na cidade.</p><div class="p">a partir de R$ 300</div></div>
+<div class="svc"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg></div><span class="n">06</span><h3>Manuten&ccedil;&atilde;o</h3><p class="d">Tu manda no WhatsApp o que quer mudar e a gente altera. Sem tu mexer em nada.</p><div class="p">R$ 89/m&ecirc;s</div></div>
+</div>
+</div></section>
 
-  <!-- Depoimentos -->
-  <section class="section depoimentos" id="depoimentos">
-    <div class="container">
-      <div class="section-header">
-        <h2>O que dizem nossos clientes</h2>
-        <p>Depoimentos de quem já transformou seu negócio com nossos serviços</p>
-      </div>
-      <div class="depoimentos-grid">
-        <div class="depoimento-card">
-          <div class="stars">★★★★★</div>
-          <p>"O site superou todas as expectativas! Profissional, moderno e muito fácil de usar. Recomendo demais!"</p>
-          <div class="depoimento-author">
-            <div class="avatar">R</div>
-            <div class="info">
-              <h4>Renan Morais</h4>
-              <p>Barbearia Morais</p>
-            </div>
-          </div>
-        </div>
-        <div class="depoimento-card">
-          <div class="stars">★★★★★</div>
-          <p>"O sistema de agendamento online mudou completamente meu negócio. Agora meus clientes agendam sozinhos!"</p>
-          <div class="depoimento-author">
-            <div class="avatar">C</div>
-            <div class="info">
-              <h4>Carlos Silva</h4>
-              <p>Barbearia do Carlos</p>
-            </div>
-          </div>
-        </div>
-        <div class="depoimento-card">
-          <div class="stars">★★★★★</div>
-          <p>"Atendimento excelente e resultado incrível. O site ficou exatamente como eu queria. Muito satisfeito!"</p>
-          <div class="depoimento-author">
-            <div class="avatar">A</div>
-            <div class="info">
-              <h4>André Santos</h4>
-              <p>Salão André</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="sec" id="processo" style="background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
+<div class="sec-head"><div><span class="k">Como funciona</span><h2>Simples assim</h2></div>
+<p class="note">40% pra come&ccedil;ar, o resto s&oacute; quando tu aprovar o site pronto.</p></div>
+<div class="proc-grid">
+<div class="proc"><div class="n">01</div><h3>Conversa</h3><p>Tu me conta o que precisa e eu te digo quanto fica e em quanto tempo.</p></div>
+<div class="proc"><div class="n">02</div><h3>Entrada de 40%</h3><p>Tu manda 40% pra eu come&ccedil;ar. Assim tu n&atilde;o paga tudo por algo que ainda n&atilde;o viu.</p></div>
+<div class="proc"><div class="n">03</div><h3>Montagem</h3><p>Eu fa&ccedil;o o site inteiro e deixo no ar em poucos dias, pronto pra tu olhar.</p></div>
+<div class="proc"><div class="n">04</div><h3>Aprova&ccedil;&atilde;o</h3><p>Tu pede os ajustes que quiser. Quando estiver do teu jeito, paga os 60% e t&aacute; no ar.</p></div>
+</div>
+</div></section>
 
-  <!-- Contato -->
-  <section class="section contato" id="contato">
-    <div class="container">
-      <div class="section-header">
-        <h2>Vamos conversar?</h2>
-        <p>Entre em contato e descubra como podemos ajudar seu negócio a crescer</p>
-      </div>
-      <div class="contato-grid">
-        <div class="contato-info">
-          <h3>Informações de Contato</h3>
-          <p>Estamos prontos para atender você e seu negócio</p>
-          <div class="contato-item">
-            <div class="icon">📧</div>
-            <div class="text">
-              <h4>Email</h4>
-              <p>contato@cowbusiness.vercel.app</p>
-            </div>
-          </div>
-          <div class="contato-item">
-            <div class="icon">📱</div>
-            <div class="text">
-              <h4>WhatsApp</h4>
-              <p>(11) 99999-9999</p>
-            </div>
-          </div>
-          <div class="contato-item">
-            <div class="icon">📍</div>
-            <div class="text">
-              <h4>Endereço</h4>
-              <p>São Paulo, SP - Brasil</p>
-            </div>
-          </div>
-        </div>
-        <form class="contato-form" onsubmit="alert('Mensagem enviada com sucesso! Entraremos em contato em breve.'); return false;">
-          <div class="form-group">
-            <label>Nome</label>
-            <input type="text" placeholder="Seu nome" required>
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" placeholder="seu@email.com" required>
-          </div>
-          <div class="form-group">
-            <label>Telefone</label>
-            <input type="tel" placeholder="(11) 99999-9999">
-          </div>
-          <div class="form-group">
-            <label>Mensagem</label>
-            <textarea placeholder="Como podemos ajudar?"></textarea>
-          </div>
-          <button type="submit" class="btn-submit">Enviar Mensagem</button>
-        </form>
-      </div>
-    </div>
-  </section>
+<section class="sec" id="portfolio"><div class="wrap">
+<div class="sec-head"><div><span class="k">Portf&oacute;lio</span><h2>Projetos entregues</h2></div>
+<p class="note">Cada site com identidade pr&oacute;pria, nada de template repetido.</p></div>
+<div class="pf-grid">
+<a href="https://cowhezzbiz.github.io/barbearias-nh/the-brothers/" class="pf" target="_blank" rel="noopener">
+<div class="thumb"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=80" alt="The Brothers Barbearia"></div>
+<div class="body"><span class="tag">Barbearia</span><h3>The Brothers</h3><p>Site com galeria, servi&ccedil;os e agendamento direto no WhatsApp.</p></div>
+</a>
+<a href="https://cowhezzbiz.github.io/barbearias-nh/la-mafia/" class="pf" target="_blank" rel="noopener">
+<div class="thumb"><img src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?w=800&q=80" alt="La Mafia Barbearia"></div>
+<div class="body"><span class="tag">Barbearia</span><h3>La Mafia</h3><p>Identidade escura e dourada, com foco em sofistica&ccedil;&atilde;o.</p></div>
+</a>
+<a href="https://cowhezzbiz.github.io/barbearias-nh/maisq/" class="pf" target="_blank" rel="noopener">
+<div class="thumb"><img src="https://images.unsplash.com/photo-1596728325488-58c87691e9af?w=800&q=80" alt="MaisQ Barber Club"></div>
+<div class="body"><span class="tag">Barbearia</span><h3>MaisQ Barber Club</h3><p>Site premium com destaque nas 609 avalia&ccedil;&otilde;es do Google.</p></div>
+</a>
+</div>
+<div style="margin-top:26px"><a href="https://cowhezzbiz.github.io/barbearias-nh/" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;font-weight:600;font-size:.92rem">Ver o portf&oacute;lio completo &rarr;</a></div>
+</div></section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h4>CowBusiness</h4>
-          <p>Desenvolvimento web profissional com foco em resultados e experiência do usuário.</p>
-        </div>
-        <div class="footer-section">
-          <h4>Serviços</h4>
-          <a href="#">Site Institucional</a>
-          <a href="#">E-commerce</a>
-          <a href="#">Landing Page</a>
-          <a href="#">Sistema Web</a>
-        </div>
-        <div class="footer-section">
-          <h4>Links Úteis</h4>
-          <a href="#">Portfólio</a>
-          <a href="#">Blog</a>
-          <a href="#">Sobre Nós</a>
-          <a href="#">Contato</a>
-        </div>
-        <div class="footer-section">
-          <h4>Redes Sociais</h4>
-          <a href="#">Instagram</a>
-          <a href="#">LinkedIn</a>
-          <a href="#">Facebook</a>
-          <a href="#">WhatsApp</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2024 CowBusiness. Todos os direitos reservados.</p>
-      </div>
-    </div>
-  </footer>
+<section class="about"><div class="wrap">
+<div>
+<div class="sec-head" style="margin-bottom:26px"><div><span class="k">Quem faz</span><h2>Site pr&oacute;prio, sem depender de ningu&eacute;m</h2></div></div>
+<p>A CowBusiness nasceu em Novo Hamburgo pra resolver um problema simples: pequeno neg&oacute;cio que precisa de site mas n&atilde;o quer pagar caro nem ficar preso em plataforma que cobra taxa por cada cliente.</p>
+<p>Aqui tu &eacute; dono do que a gente faz. Sem aluguel de site, sem taxa escondida, sem precisar entender de programa&ccedil;&atilde;o pra mudar uma linha.</p>
+</div>
+<div class="box">
+<h4>O que t&aacute; incluso</h4>
+<ul>
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Design exclusivo pro teu neg&oacute;cio</li>
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Funciona no celular, tablet e computador</li>
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Bot&atilde;o de agendamento direto no WhatsApp</li>
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Otimizado pra aparecer no Google</li>
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Ajustes inclusos depois de pronto</li>
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Suporte pelo WhatsApp</li>
+</ul>
+</div>
+</div></section>
 
-  <script>
-    // Animações de scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate');
-        }
-      });
-    }, { threshold: 0.1 });
+<section class="sec" style="border-top:1px solid var(--line)"><div class="wrap">
+<div class="sec-head"><div><span class="k">Depoimentos</span><h2>Quem j&aacute; fechou</h2></div></div>
+<div class="rev-grid">
+<div class="rev"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Achei que fosse complicado ter site, mas foi bem tranquilo. Ele fez tudo e eu s&oacute; olhei no fim. Ficou do jeito que eu queria."</p><div class="who">Cristian B.</div><div class="role">Barbearia em NH</div></div>
+<div class="rev"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"O que mais gostei foi n&atilde;o precisar mexer em nada. Quando quero trocar um pre&ccedil;o, mando no WhatsApp e ele arruma. Simples."</p><div class="who">Rodrigo M.</div><div class="role">Barbearia em NH</div></div>
+<div class="rev"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Pre&ccedil;o justo e o site ficou pronto r&aacute;pido. J&aacute; me falaram que encontraram a barbearia pelo Google."</p><div class="who">Fernando S.</div><div class="role">Barbearia em NH</div></div>
+</div>
+</div></section>
 
-    document.querySelectorAll('.servico-card, .portfolio-item, .depoimento-card').forEach(el => {
-      observer.observe(el);
-    });
+<section class="contact" id="contato"><div class="wrap">
+<div>
+<div class="sec-head" style="margin-bottom:26px"><div><span class="k">Contato</span><h2>Vamos conversar?</h2></div></div>
+<p class="lead">Me conta o que tu precisa e eu te digo quanto fica, sem enrola&ccedil;&atilde;o. Se preferir, manda um &aacute;udio que eu respondo.</p>
+<div class="li"><div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><h4>Onde a gente atende</h4><p>Novo Hamburgo e regi&atilde;o<br>Rio Grande do Sul</p></div></div>
+<div class="li"><div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><h4>WhatsApp</h4><p><a href="https://wa.me/5551999999999">Clique aqui pra falar</a></p></div></div>
+</div>
+<div>
+<div class="sec-head" style="margin-bottom:26px"><div><span class="k">Hor&aacute;rio</span><h2>Quando falar</h2></div></div>
+<div class="hrow"><span class="day">Segunda</span><span>09:00 &mdash; 18:00</span></div>
+<div class="hrow"><span class="day">Ter&ccedil;a</span><span>09:00 &mdash; 18:00</span></div>
+<div class="hrow"><span class="day">Quarta</span><span>09:00 &mdash; 18:00</span></div>
+<div class="hrow"><span class="day">Quinta</span><span>09:00 &mdash; 18:00</span></div>
+<div class="hrow"><span class="day">Sexta</span><span>09:00 &mdash; 18:00</span></div>
+<div class="hrow"><span class="day">S&aacute;bado</span><span>09:00 &mdash; 12:00</span></div>
+<div class="hrow"><span class="day">Domingo</span><span class="cl">Fechado</span></div>
+<a href="https://wa.me/5551999999999" class="wa-big" style="margin-top:26px"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg> Falar no WhatsApp</a>
+</div>
+</div></section>
 
-    // Menu mobile (simplificado)
-    const nav = document.querySelector('.nav');
-    const btnCta = document.querySelector('.btn-cta');
-
-    // Smooth scroll para links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-  </script>
+<footer><div class="wrap"><div class="foot">
+<span class="l">COW<span>BUSINESS</span></span>
+<span class="r">&copy; 2026 &middot; Novo Hamburgo / RS</span>
+</div></div></footer>
 </body>
 </html>
